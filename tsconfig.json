@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Alvos de Compilação & Ecossistema */
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+    /* Rigidez de Tipagem (Proíbe variáveis sem tipo) */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+
+    /* Qualidade de Código & Boas Práticas */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Configurações de Saída */
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}
