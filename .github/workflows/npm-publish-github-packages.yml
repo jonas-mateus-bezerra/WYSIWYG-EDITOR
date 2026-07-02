@@ -1,7 +1,5 @@
-# This workflow will build a Node.js application and serve static HTML files
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: delivering node application
+# Simple workflow for deploying static HTML to GitHub Pages
+name: Deploy static HTML to Pages
 
 on:
   push:
@@ -11,73 +9,38 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write  # Required for GitHub Pages deployment
+  id-token: write
 
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url || steps.deploy.outputs.page_url }}
+    
     runs-on: ubuntu-latest
     
-    permissions:
-      contents: read
-      pages: write
-      id-token: write  # Required for GitHub Pages deployment
-    
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build application
-        run: npm run build || echo "No build script found, skipping build"
-      
-      - name: List files (debug)
-        run: ls -la
-      
-      - name: Upload build artifacts
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: '.'
       
       - name: Deploy to GitHub Pages
+        id: deploy
         uses: actions/deploy-pages@v4
-
-  publish-gpr:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    
-    permissions:
-      contents: read
-      packages: write
-      id-token: write  # Required for some package registry operations
-    
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          registry-url: https://npm.pkg.github.com/
+      - name: Get deployment URL
+        run: |
+          echo "Deployed to: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          echo "Deployment URL: ${{ steps.deploy.outputs.page_url }}"
       
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build application
-        run: npm run build || echo "No build script found"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Publish to GitHub Packages
-        run: npm publish || echo "No package to publish"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show deployment URL in summary
+        run: |
+          echo "## 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
+          echo "### 🌐 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}" >> $GITHUB_STEP_SUMMARY
