@@ -7,7 +7,9 @@ export default defineConfig({
     // Roda o novo ESLint a cada salvamento de arquivo
     eslint({
       cache: false,
-      include: ['src/**/*.ts']
+      include: ['src/**/*.ts'],
+      lintOnStart: true,
+      customOverlay: true
     }),
     // Roda o compilador TypeScript checando o tsconfig.json em tempo real
     checker({
