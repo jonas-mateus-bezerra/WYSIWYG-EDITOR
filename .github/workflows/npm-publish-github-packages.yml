@@ -8,9 +8,19 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write  # Required for GitHub Pages deployment
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write  # Required for GitHub Pages deployment
     
     steps:
       - name: Checkout code
@@ -22,7 +32,7 @@ jobs:
           node-version: '24'
       
       - name: Install dependencies
-        run: npm install  # Changed from npm ci to npm install
+        run: npm install
       
       - name: Build application
         run: npm run build || echo "No build script found, skipping build"
@@ -33,18 +43,20 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .  # Upload all files since it's a static HTML site
+          path: .
       
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        if: github.ref == 'refs/heads/main'
 
   publish-gpr:
     needs: build-and-deploy
     runs-on: ubuntu-latest
+    
     permissions:
       contents: read
       packages: write
+      id-token: write  # Required for some package registry operations
+    
     if: github.ref == 'refs/heads/main'
     
     steps:
@@ -58,7 +70,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       
       - name: Install dependencies
-        run: npm install  # Changed from npm ci to npm install
+        run: npm install
       
       - name: Build application
         run: npm run build || echo "No build script found"
