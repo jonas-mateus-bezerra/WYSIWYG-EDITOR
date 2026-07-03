@@ -1,0 +1,46 @@
+# Simple workflow for deploying static HTML to GitHub Pages
+name: Deploy static HTML to Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url || steps.deploy.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+      
+      - name: Get deployment URL
+        run: |
+          echo "Deployed to: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"
+          echo "Deployment URL: ${{ steps.deploy.outputs.page_url }}"
+      
+      - name: Show deployment URL in summary
+        run: |
+          echo "## 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
+          echo "### 🌐 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}" >> $GITHUB_STEP_SUMMARY
