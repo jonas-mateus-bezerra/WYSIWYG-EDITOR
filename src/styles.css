@@ -1,0 +1,136 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --editor-bg: #ffffff;
+  --text-main: #2c3e50;
+  --border-color: #e0e6ed;
+  --accent-color: #6366f1;
+  --toolbar-bg: #f8fafc;
+  --btn-hover: #f1f5f9;
+}
+
+body {
+  margin: 0;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-gradient); /* Mantive a ideia do seu fundo original, mas mais suave */
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.editor-container {
+  width: 100%;
+  max-width: 800px;
+  background: var(--editor-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Barra de Ferramentas */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 16px;
+  background: var(--toolbar-bg);
+  border-bottom: 1px solid var(--border-color);
+  gap: 8px;
+  align-items: center;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 8px;
+  border-right: 1px solid var(--border-color);
+}
+
+.toolbar-group:last-child {
+  border-right: none;
+}
+
+/* Botões */
+.btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+  color: var(--accent-color);
+}
+
+.btn.active {
+  background: #e0e7ff;
+  color: var(--accent-color);
+}
+
+.format-select {
+  border: 1px solid var(--border-color);
+  background: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-main);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Área do Editor */
+.editor-content {
+  padding: 40px 60px;
+  min-height: 500px;
+  outline: none;
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Estilização interna do conteúdo editável */
+.editor-content h1 {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.editor-content p {
+  margin-bottom: 12px;
+}
+
+.editor-content ul {
+  padding-left: 20px;
+}
+
+/* Customização do botão de cor (pequeno detalhe visual) */
+.btn-color {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-color span {
+  position: absolute;
+  bottom: 4px;
+  left: 20%;
+  width: 60%;
+  height: 3px;
+  background: #ff4757; /* Cor atual selecionada */
+  border-radius: 2px;
+}
