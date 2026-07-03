@@ -1,9 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Texto</title>
+    <!-- Link para o arquivo CSS solicitado -->
+    <link rel="stylesheet" href="src/styles.css">
+</head>
 <body>
+    <div class="editor-container">
+        <!-- Barra de Ferramentas -->
+        <header class="toolbar" role="toolbar" aria-label="Barra de ferramentas do editor">
+            <div class="toolbar-group">
+                <select class="format-select" id="header-select" aria-label="Formato do texto">
+                    <option value="p">Texto</option>
+                    <option value="h1">Título 1</option>
+                    <option value="h2">Título 2</option>
+                </select>
+            </div>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+            <div class="toolbar-group">
+                <button type="button" title="Negrito" class="btn"><b>B</b></button>
+                <button type="button" title="Itálico" class="btn"><i>I</i></button>
+                <button type="button" title="Sublinhado" class="btn"><u>U</u></button>
+                <button type="button" title="Citação" class="btn">”</button>
+                <button type="button" title="Cor" class="btn-color">A<span></span></button>
+            </div>
 
+            <div class="toolbar-group">
+                <!-- Esquerda -->
+                <button type="button" title="Esquerda" class="btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <line x1="17" y1="10" x2="3" y2="10"></line>
+                        <line x1="21" y1="6" x2="3" y2="6"></line>
+                        <line x1="21" y1="14" x2="3" y2="14"></line>
+                        <line x1="17" y1="18" x2="3" y2="18"></line>
+                    </svg>
+                </button>
+                <!-- Centralizar -->
+                <button type="button" title="Centralizar" class="btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <line x1="18" y1="10" x2="6" y2="10"></line>
+                        <line x1="21" y1="6" x2="3" y2="6"></line>
+                        <line x1="21" y1="14" x2="3" y2="14"></line>
+                        <line x1="18" y1="18" x2="6" y2="18"></line>
+                    </svg>
+                </button>
+                <!-- Direita -->
+                <button type="button" title="Direita" class="btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <line x1="21" y1="10" x2="7" y2="10"></line>
+                        <line x1="21" y1="6" x2="3" y2="6"></line>
+                        <line x1="21" y1="14" x2="3" y2="14"></line>
+                        <line x1="21" y1="18" x2="7" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="toolbar-group">
+                <button type="button" title="Lista" class="btn">•≣</button>
+                <button type="button" title="Link" class="btn">🔗</button>
+                <button type="button" title="Imagem" class="btn">🖼</button>
+            </div>
+        </header>
+
+        <!-- Área de Edição -->
+        <script type="module" src="/src/main.ts"></script>
+    <main class="editor-content" contenteditable="true" spellcheck="false" aria-label="Área de edição de texto">
+            <h1>Minhas Skills</h1>
+            <p><b>Frontend:</b></p>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Javascript ES6</li>
+            </ul>
+        </main>
+    </div>
 </body>
 </html>
