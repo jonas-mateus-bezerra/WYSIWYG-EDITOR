@@ -52,7 +52,7 @@ body {
 }
 
 /* Botões */
-.btn {
+[class^="btn"] {
   width: 32px;
   height: 32px;
   display: flex;
@@ -67,12 +67,12 @@ body {
   font-size: 14px;
 }
 
-.btn:hover {
+[class^="btn"]:hover {
   background: var(--btn-hover);
   color: var(--accent-color);
 }
 
-.btn.active {
+[class^="btn"].active {
   background: #e0e7ff;
   color: var(--accent-color);
 }
