@@ -34,9 +34,6 @@ jobs:
       - name: Build TypeScript
         run: npm run build  # ou tsc, conforme o script definido no package.json
 
-      - name: Serving wih Vite
-        run: npx vite preview
-      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
