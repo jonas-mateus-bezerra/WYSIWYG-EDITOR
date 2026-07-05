@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'  # mantém o HTML na raiz e a pasta dist no mesmo nível
+          path: '.'  # mantém o HTML na raiz e a pasta dist no mesmo nível
       
       - name: Deploy to GitHub Pages
         id: deploy
