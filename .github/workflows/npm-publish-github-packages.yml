@@ -27,7 +27,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'  # ou a versão que seu projeto utiliza
-          
+      
+      - name: Install dependencies
+        run: npm ci  # ou npm install, se preferir
+      
       - name: Build TypeScript
         run: npm run build  # ou tsc, conforme o script definido no package.json
       
