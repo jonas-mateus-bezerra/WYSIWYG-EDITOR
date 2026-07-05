@@ -15,5 +15,6 @@ export default defineConfig({
     checker({
       typescript: true
     })
-  ]
+  ],
+    base: 'https://jonas-mateus-bezerra.github.io/WYSIWYG-EDITOR/',
 });
