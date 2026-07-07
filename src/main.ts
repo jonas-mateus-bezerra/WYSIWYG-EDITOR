@@ -31,7 +31,7 @@ function enableStylingFeatures(editorContext: EditorContext): void {
   const titleSelect = document.querySelector<HTMLSelectElement>('.format-select');
   const boldButton = document.querySelector<HTMLButtonElement>('.btn-bold');
   const underlineButton = document.querySelector<HTMLButtonElement>('.btn-underline');
-  const italicButton = document.querySelector<HTMLButtonElement>('.btn.italic');
+  const italicButton = document.querySelector<HTMLButtonElement>('.btn-italic');
   const quotesButton = document.querySelector<HTMLButtonElement>('.bnt-quote');
   const fontColorButton = document.querySelector<HTMLButtonElement>('.btn-color');
 
@@ -64,11 +64,61 @@ function enableStylingFeatures(editorContext: EditorContext): void {
   });
 }
 
+function enableFormatingFeatures(): void {
+  const justifyLeftButton = document.querySelector<HTMLButtonElement>('.bnt-justify-left');
+  const justifyRightButton = document.querySelector<HTMLButtonElement>('.btn-justify-right');
+  const justifyCenter = document.querySelector<HTMLButtonElement>('.btn-justify-center');
+
+  justifyLeftButton?.addEventListener('click', () => {
+    document.execCommand('justifyLeft', false);
+  });
+  justifyRightButton?.addEventListener('click', () => {
+    document.execCommand('justifyRight', false);
+  });
+  justifyCenter?.addEventListener('click', () => {
+    document.execCommand('justifyCenter', false);
+  });
+}
+
+function enableOrdeningFeatures(): void {
+  const bulletsListButton = document.querySelector<HTMLButtonElement>('.btn-bullets-list');
+  const numberedListButton = document.querySelector<HTMLButtonElement>('.btn-numbered-list');
+
+  bulletsListButton?.addEventListener('click', () => {
+    document.execCommand('insertUnorderedList', false);
+  });
+  numberedListButton?.addEventListener('click', () => {
+    document.execCommand('insertOrderedList', false);
+  });
+}
+
+function enableExtraFeatures(): void {
+  const imageBtn = document.querySelector<HTMLButtonElement>('.btn-img');
+  const linkBtn = document.querySelector<HTMLButtonElement>('.btn-link');
+
+  linkBtn?.addEventListener('click', () => {
+    const url = window.prompt('Type the URL:');
+    if (url !== null) {
+      document.execCommand('createLink', false, url);
+    }
+  });
+
+  imageBtn?.addEventListener('click', () => {
+    const url = window.prompt('Type an URL for image:');
+    if (url !== null) {
+      document.execCommand('insertImage', false, url);
+    }
+  });
+}
+
 function setupEditor(mainElement: EditorContext): void {
   mainElement.contentEditable = 'true';
   mainElement.style.fontFamily = 'Arial, sans-serif';
 
   enableStylingFeatures(mainElement);
+  enableFormatingFeatures();
+  enableOrdeningFeatures();
+  enableExtraFeatures();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
